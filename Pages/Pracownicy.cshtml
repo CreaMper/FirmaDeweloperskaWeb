@@ -1,0 +1,53 @@
+﻿@page
+@model FirmaDeweloperskaWeb.Pages.PracownicyModel
+@{
+    ViewData["Title"] = "Pracownicy";
+}
+
+<body>
+    <center>
+        </br>
+        <div class="badge text-wrap" style="width: 45rem;">
+            Aktualnie znajdujesz się w menu obsługi pracowników. Kliknij na pracownika aby zobaczyć jego
+            szczegóły lub dodaj nowego poprzez naciśnięcie odpowieniego przycisku.
+        </div>
+
+        <button type="button" class="btn btn-warning">Dodaj Pracownika</button>
+        </br></br>
+     </center>
+    <div style="width:90%; margin:auto">
+        <table class="table table-hover table-sm" style="min-height: 100vh;" >
+            <thead>
+                <tr>
+                    <th scope="col">Imie</th>
+                    <th scope="col">Nazwisko</th>
+                    <th scope="col">Stanowisko</th>
+                    <th scope="col">Pesel</th>
+                    <th scope="col">Adres</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefon</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Pracownicy pracownicy in Model.Pracownicies)
+                {
+                <tr>
+                    <td>@pracownicy.PracImie</td>
+                    <td>@pracownicy.PracNazwisko</td>
+                    <td>@pracownicy.PracStanowsko</td>
+                    <td>@pracownicy.PracPesel</td>
+                    <td>@pracownicy.PracAdres</td>
+                    <td>@pracownicy.PracEmail</td>
+                    <td>@pracownicy.PracTelefon</td>
+                    <td align="center">
+                        <a href="/PracownicySzczegoly#id=@pracownicy.PracId"><img src="~/settings.png" alt="Sample Photo"  style="width:23px;height:23px;" /></a>
+                    </td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</body>
