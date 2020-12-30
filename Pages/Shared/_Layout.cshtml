@@ -10,20 +10,56 @@
     </environment>
 </head>
 <body>
-    <ul class="nav nav-pills nav-fill">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Much longer nav link</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-    </ul>
+    @{
+        var routeUrl = Url.RouteUrl(ViewContext.RouteData.Values);
+        var qsPath = ViewContext.HttpContext.Request.QueryString.Value;
+        var returnUrl = $"{routeUrl}{qsPath}";
+    }
+
+    @if (returnUrl == "/Zespoly")
+    {
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="@Url.Page("/Index")">Lista Pracowników</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="@Url.Page("/Zespoly")">Zespoły </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Page("/Zlecenia")">Zlecenia</a>
+            </li>
+        </ul>
+    }
+    else if (returnUrl == "/Zlecenia")
+    {
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="@Url.Page("/Index")">Lista Pracowników</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="@Url.Page("/Zespoly")">Zespoły </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="@Url.Page("/Zlecenia")">Zlecenia</a>
+            </li>
+        </ul>
+
+    }
+    else
+    {
+        <ul class="nav nav-pills nav-fill">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="@Url.Page("/Index")">Lista Pracowników</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="@Url.Page("/Zespoly")">Zespoły </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Page("/Zlecenia")">Zlecenia</a>
+            </li>
+        </ul>
+    }
+
     @RenderBody()
 </body>
 </html>
