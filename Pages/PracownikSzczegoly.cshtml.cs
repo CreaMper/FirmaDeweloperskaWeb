@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FirmaDeweloperskaWeb.Pages
 {
-    public class PracownicySzczegolyModel : PageModel
+    public class PracownikSzczegółyModel : PageModel
     {
         public void OnGet()
         {

@@ -22,11 +22,14 @@ namespace FirmaDeweloperskaWeb.Pages
 
         private firma_deweloperska_3Context db { get; }
         public List<Pracownicy> Pracownicies { get; set; }
+        
 
-        public void OnGet()
+        public async Task OnGet(string action)
         {
+            Action = action;
             this.Pracownicies = (from Pracownicy in this.db.Pracownicies
                               select Pracownicy).ToList();
         }
+        [BindProperty] public string Action { get; set; }
     }
 }
