@@ -76,9 +76,12 @@
                         <td>@pracownicy.PracStanowsko</td>
                     </tr>
                 }
-                </tbody>
+            </tbody>
         </table>
-        </br><button type="submit" class="btn btn-warning">Zmień Dane</button>
+        @foreach (Pracownicy pracownicy in Model.PracownikDane)
+        {
+            <a href="/PracownicyEdytuj?id=@pracownicy.PracId"><button type="submit" class="btn btn-warning">Zmień Dane</button></a>
+        }
     </div>
     <div class="obrazek">
         <img src="~/user_img.png" alt="Sample Photo" style="width:250px;height:250px;" />
