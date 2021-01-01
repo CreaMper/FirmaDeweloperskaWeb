@@ -1,0 +1,176 @@
+﻿@page
+@model FirmaDeweloperskaWeb.Pages.PracownikSzczegolyModel
+@{
+    ViewData["Title"] = "Szczegóły Pracownika";
+}
+<style>
+    td {
+        height: 15px;
+        padding-left: 5px;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 0px 0px;
+        grid-template-areas: "info1 obrazek info2 ." "tabela1 tabela1 tabela2 ." ". . . .";
+        width: 80%;
+        margin: auto;
+        margin-top: 40px;
+    }
+
+    .info1 {
+        grid-area: info1;
+    }
+
+    .obrazek {
+        grid-area: obrazek;
+    }
+
+    .info2 {
+        grid-area: info2;
+    }
+
+    .tabela1 {
+        grid-area: tabela1;
+    }
+
+    .tabela2 {
+        grid-area: tabela2;
+    }
+</style>
+
+<div class="grid-container">
+    <div class="Info1">
+        <table style="width:100%;">
+            <tbody>
+                @foreach (Pracownicy pracownicy in Model.PracownikDane)
+                {
+                    <tr>
+                        <td><b>Imie</b></td>
+                        <td>@pracownicy.PracImie</td>
+                    </tr>
+                    <tr>
+                        <td><b>Nazwisko</b></td>
+                        <td>@pracownicy.PracNazwisko</td>
+                    </tr>
+                    <tr>
+                        <td><b>Adress</b></td>
+                        <td>@pracownicy.PracAdres</td>
+                    </tr>
+                    <tr>
+                        <td><b>Email</b></td>
+                        <td>@pracownicy.PracEmail</td>
+                    </tr>
+                    <tr>
+                        <td><b>Telefon</b></td>
+                        <td>@pracownicy.PracTelefon</td>
+                    </tr>
+                    <tr>
+                        <td><b>Pesel</b></td>
+                        <td>@pracownicy.PracPesel</td>
+                    </tr>
+                    <tr>
+                        <td><b>Stanowisko</b></td>
+                        <td>@pracownicy.PracStanowsko</td>
+                    </tr>
+                }
+                </tbody>
+        </table>
+        </br><button type="submit" class="btn btn-warning">Zmień Dane</button>
+    </div>
+    <div class="obrazek">
+        <img src="~/user_img.png" alt="Sample Photo" style="width:250px;height:250px;" />
+    </div>
+    <div class="info2">
+        <table>
+            <tbody>
+                @if (Model.PracownikUmowa.Count() != 0)
+                {
+                    @foreach (Umowy umowa in Model.PracownikUmowa)
+                    {
+                        <tr>
+                            <td><b>Nr Umowy</b></td>
+                            <td>@umowa.UmowaId</td>
+                        </tr>
+                        <tr>
+                            <td><b>Pensja</b></td>
+                            <td>@umowa.UmowaPensja zł</td>
+                        </tr>
+                        <tr>
+                            <td><b>Zatrudniony Od</b></td>
+                            <td>@umowa.UmowaOdKiedy</td>
+                        </tr>
+                        <tr>
+                            <td><b>Zatrudniony Do</b></td>
+                            <td>@umowa.UmowaDoKiedy</td>
+                        </tr>
+                    }
+                 } else
+                 {
+                    <script>alert("Ten pracownik nie ma jeszcze umowy, dodaj ja!")</script>
+                    <tr>
+                        <td><b>Nr Umowy</b></td>
+                        <td>Brak</td>
+                    </tr>
+                    <tr>
+                        <td><b>Pensja</b></td>
+                        <td>Brak</td>
+                    </tr>
+                    <tr>
+                        <td><b>Zatrudniony Od</b></td>
+                        <td>Brak</td>
+                    </tr>
+                    <tr>
+                        <td><b>Zatrudniony Do</b></td>
+                        <td>Brak</td>
+                    </tr>
+                    }
+            </tbody>
+        </table>
+        </br><button type="submit" class="btn btn-warning">Edytuj Umowe</button>
+    </div>
+
+
+
+
+    <div class="tabela1" style="width:90%;float:left;">
+        </br> <b>Wykaz wydatków pracownika :</b> </br>
+        <table class="table .table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Numer wydatku</th>
+                    <th scope="col">Kwota</th>
+                    <th scope="col">Data</th>
+                    <th scrope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Wydatki wydatek in Model.PracownikWydatki)
+                { 
+                <tr>
+                    <td>@wydatek.WydId</td>
+                    <td>@wydatek.WydKwota zł</td>
+                    <td>@wydatek.WydData</td>
+                    <td><button type="button" class="btn btn-info">Szczegóły</button></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="tabela2">
+        </br> <b>Zespoły pracownika :</b> </br>
+        <table class="table .table-hover">
+            <tbody>
+                @foreach (Zespoly zespoly in Model.PracownikZespoly)
+                {
+                    <tr>
+                        <td>@zespoly.ZespNazwa</td>
+                        <td><button type="button" class="btn btn-info">Podgląd</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
