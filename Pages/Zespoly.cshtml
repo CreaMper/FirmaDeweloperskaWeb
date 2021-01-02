@@ -4,4 +4,44 @@
     ViewData["Title"] = "Zespoły";
 }
 
-To jest zespol
+<center>
+    </br>
+    <div class="badge text-wrap" style="width: 45rem;">
+        W tym momencie przeglądasz wszystkie dostępne zespoły. Możesz sprawdzić kto jest w danym zespole,
+        sprawdzić jakie zlecenia posiada dany zespoł lub utworzyc zlecenie danego zespołu.
+    </div>
+    <form class="btn btn-warning" action="@Url.Page("/ZlecenieDodaj")">
+        <button type="submit" class="btn btn-warning">Dodaj Zespół</button>
+    </form>
+    </br></br>
+</center>
+
+<div>
+    <table class="table table-hover" style="width:70%;margin:auto;margin-top:40px;">
+        <thead>
+            <tr>
+                <td>Numer</td>
+                <td>Nazwa Zespołu</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (Zespoly zespol in Model.zespoly)
+            {
+                <tr>
+                    <td>@zespol.ZespId</td>
+                    <td>@zespol.ZespNazwa</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-info">Pracownicy</button>
+                            <button type="button" class="btn btn-info">Zlecenia</button>
+                            <button type="button" class="btn btn-info">Dodaj Zlecenie</button>
+                        </div>
+                    </td>
+
+                </tr>
+            }
+            </tbody>
+    </table>
+</div>
