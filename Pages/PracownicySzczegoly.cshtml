@@ -110,8 +110,9 @@
                             <td>@umowa.UmowaDoKiedy</td>
                         </tr>
                     }
-                 } else
-                 {
+                }
+                else
+                {
                     <script>alert("Ten pracownik nie ma jeszcze umowy, dodaj ja!")</script>
                     <tr>
                         <td><b>Nr Umowy</b></td>
@@ -129,10 +130,24 @@
                         <td><b>Zatrudniony Do</b></td>
                         <td>Brak</td>
                     </tr>
-                    }
+                }
             </tbody>
         </table>
-        </br><button type="submit" class="btn btn-warning">Edytuj Umowe</button>
+        @if (Model.PracownikUmowa.Count() != 0)
+        {
+            @foreach (Umowy umowa in Model.PracownikUmowa)
+            {
+                <a href="/Umowa?id=@umowa.PracId"><button type="submit" class="btn btn-warning">Edytuj Umowe</button></a>
+            }
+        }
+        else
+        {
+            @foreach (Pracownicy pracownicy in Model.PracownikDane)
+            {
+                <a href="/Umowa?id=@pracownicy.PracId"><button type="submit" class="btn btn-warning">Edytuj Umowe</button></a>
+            }
+        }
+
     </div>
 
 

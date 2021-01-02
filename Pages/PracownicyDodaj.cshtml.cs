@@ -19,7 +19,7 @@ namespace FirmaDeweloperskaWeb.Pages
             this.db = _context;
 
         }
-        public async Task<IActionResult> OnPostAdd()
+        public IActionResult OnPostAdd()
         {
             Pracownicy nowy = new Pracownicy();
             nowy.PracImie = Request.Form["formImie"];
