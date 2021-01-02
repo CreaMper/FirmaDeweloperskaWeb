@@ -10,7 +10,7 @@
         W tym momencie przeglądasz wszystkie dostępne zespoły. Możesz sprawdzić kto jest w danym zespole,
         sprawdzić jakie zlecenia posiada dany zespoł lub utworzyc zlecenie danego zespołu.
     </div>
-    <form class="btn btn-warning" action="@Url.Page("/ZlecenieDodaj")">
+    <form class="btn btn-warning" action="@Url.Page("/ZespolyDodaj")">
         <button type="submit" class="btn btn-warning">Dodaj Zespół</button>
     </form>
     </br></br>
@@ -34,9 +34,9 @@
                     <td>@zespol.ZespNazwa</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-info">Pracownicy</button>
-                            <button type="button" class="btn btn-info">Zlecenia</button>
-                            <button type="button" class="btn btn-info">Dodaj Zlecenie</button>
+                            <a href="/ZespolySzczegoly?id=@zespol.ZespId"> <button type="button" class="btn btn-info">Pracownicy</button></a>
+                                <button type="button" class="btn btn-info">Zlecenia</button>
+                                <button type="button" class="btn btn-info">Dodaj Zlecenie</button>
                         </div>
                     </td>
 

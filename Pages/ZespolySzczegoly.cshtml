@@ -1,0 +1,110 @@
+﻿@page
+@model FirmaDeweloperskaWeb.Pages.ZespolySzczegolyModel
+@{
+    ViewData["Tittle"] = "Przeglądasz jeden z zespołów!";
+}
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 0px 0px;
+        grid-template-areas:  "skald aktywnezlecenia . ." ". . . .";
+        margin-top: 40px;
+        width: 85%;
+        margin: auto;
+        margin-top: 40px;
+    }
+
+
+    .skald {
+        grid-area: skald;
+    }
+
+    .aktywnezlecenia {
+        grid-area: aktywnezlecenia;
+    }
+
+    .opis {
+        width: 85%;
+        margin: auto;
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
+</style>
+
+<div class="opis">
+    @foreach (Zespoly zespol in Model.zespoly)
+    {
+        <div>
+            W tym momencie znajdujesz się w szczegółowym widoku zespołu <h2>@zespol.ZespNazwa</h2>
+        </div>
+    }
+</div>
+
+<div class="grid-container">
+
+    <div class="skald">
+        <b>Podgląd pracowników:</b> <button type="submit" class="btn btn-warning">Przypisz Pracownika</button>
+        <table class="table table-hover" style="width:85%;float:left;">
+            <thead>
+                <tr>
+                    <td><b>Imie</b></td>
+                    <td><b>Nazwisko</b></td>
+                    <td><b>Stanowisko</b></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (Pracownicy pracownicy in Model.pracownicy)
+                {
+                <tr>
+                    <td>@pracownicy.PracImie</td>
+                    <td>@pracownicy.PracNazwisko</td>
+                    <td>@pracownicy.PracStanowsko</td>
+                    <td><img src="~/remove.png" alt="Sample Photo" style="width:23px;height:23px;" /></td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="aktywnezlecenia">
+        <b>Podgląd aktywnych zleceń :</b> <button type="submit" class="btn btn-warning">Przypisz zlecenie</button>
+        <table class="table table-hover" style="width: 85%; float: left;">
+            <thead>
+                <tr>
+                    <td><b>Zlecenie</b></td>
+                    <td><b>Ukończone?</b></td>
+                    <td style="width:10px;"><b>Priorytet</b></td>
+                    <td><b>Rozpoczęcie</b></td>
+                    <td><b>Opis</b></td>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (Zlecenium zlecenie in Model.zlecenia)
+                {
+                    <tr>
+                        <td>@zlecenie.ZlecId</td>
+                        <td>
+                            @if (zlecenie.ZlecZakonczono)
+                            {
+                                <a>Tak</a>
+                            }
+                            else
+                            {
+                                <a>Nie</a>
+                            }
+                        </td>
+                        <td style="width:10px;">@zlecenie.PrioId</td>
+                        <td>@zlecenie.ZlecRozpoczecie</td>
+                        <td>@zlecenie.ZlecOpis</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
