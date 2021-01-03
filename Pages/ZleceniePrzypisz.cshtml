@@ -1,0 +1,80 @@
+﻿@page
+@model FirmaDeweloperskaWeb.Pages.ZleceniePrzypiszModel
+@{
+    ViewData["Tittle"] = "Przypis zlecenie do zespolu";
+}
+
+<div style="width:50%;margin:auto;margin-top:40px;">
+    <form class="needs-validation" novalidate asp-page-handler="Przypisz" method="POST">
+        <div>
+            <label for="validationCustom01" class="form-label">Numer</label>
+            <input type="text" class="form-control" id="formNumer" name="formNumer" placeholder="Auto" disabled>
+            <div class="invalid-feedback">
+                Imie jest wymagane
+            </div>
+        </div>
+        <div>
+            <label class="form-label">Priorytet: </label> <br />
+            <select class="form-select form-select-lg" aria-label="Default select example" name="formPrio" id="formPrio">
+                <option selected>Wybierz priorytet</option>
+                @foreach (Priorytety priorytet in Model.priorytety)
+                {
+                    <option value="@priorytet.PrioId">@priorytet.PrioNazwa</option>
+                }
+            </select>
+        </div>
+        <div>
+            <label class="form-label">Zespół: </label> </br>
+            <select class="form-select form-select-lg" aria-label="Default select example" name="formZespol" id="formZespol" disabled>
+                @foreach (Zespoly zespol in Model.wybrany_zespol)
+                {
+                    <option selected="selected" value="@zespol.ZespId">@zespol.ZespNazwa</option>
+                }
+            </select>
+        </div>
+        <div>
+            <label for="validationCustom03" class="form-label">Rozpoczęto:</label>
+            <input class="form-control" id="formRozpoczeto" name="formRozpoczecie" value="11/9/2020 7:12:04 PM">
+            <div class="invalid-feedback">
+                Niepoprawna data
+            </div>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" name="formZakonczono">
+            <label class="form-check-label" for="flexCheckDefault">
+                Ukończono?
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Opis :</label>
+            <textarea class="form-control" id="formOpis" name="formOpis" rows="3"></textarea>
+        </div>
+        <div>
+            </br>
+            <centeR><button class="btn btn-primary" type="submit">Przypisz Zlecenie</button></centeR>
+        </div>
+    </form>
+</div>
+
+<Script>
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+
+                }, false)
+            })
+    })()
+</Script>

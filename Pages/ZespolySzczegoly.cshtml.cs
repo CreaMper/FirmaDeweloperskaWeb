@@ -14,6 +14,7 @@ namespace FirmaDeweloperskaWeb.Pages
         public List<Zlecenium> zlecenia { get; set; }
         public List<Zespoly> zespoly { get; set; }
         [BindProperty] public string Id { get; set; }
+        public static string global_id;
 
         public ZespolySzczegolyModel(firma_deweloperska_3Context _context)
         {
@@ -22,9 +23,18 @@ namespace FirmaDeweloperskaWeb.Pages
         public void OnGet(string id)
         {
             Id = id;
+            global_id = id;
             pracownicy = (from Pracownicy in db.Pracownicies where Pracownicy.ZespId == int.Parse(id) select Pracownicy).ToList();
             zlecenia = (from zlecenia in this.db.Zlecenia where zlecenia.ZespId == int.Parse(id) select zlecenia).ToList();
             zespoly = (from zespoly in this.db.Zespolies where zespoly.ZespId == int.Parse(id) select zespoly).ToList();
+        }
+
+        public IActionResult OnPostRemove(int wybrany)
+        {
+            Decimal who = Decimal.Parse(wybrany.ToString());
+            db.Pracownicies.Find(who).ZespId = null;
+            db.SaveChanges();
+            return RedirectToPage("/ZespolySzczegoly", new { id = global_id });
         }
     }
 }

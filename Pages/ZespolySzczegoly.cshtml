@@ -45,33 +45,47 @@
 <div class="grid-container">
 
     <div class="skald">
-        <b>Podgląd pracowników:</b> <button type="submit" class="btn btn-warning">Przypisz Pracownika</button>
-        <table class="table table-hover" style="width:85%;float:left;">
-            <thead>
-                <tr>
-                    <td><b>Imie</b></td>
-                    <td><b>Nazwisko</b></td>
-                    <td><b>Stanowisko</b></td>
-                    <td></td>
-                </tr>
-            </thead>
-            <tbody>
+        <b>Podgląd pracowników:</b> 
+        @foreach (Zespoly zespol in Model.zespoly)
+        {
+            <a href="/ZespolyDodajPracownika?zesp_id=@zespol.ZespId"> <button type="submit" class="btn btn-warning">Przypisz Pracownika</button></a>
+        }
+            <table class="table table-hover" style="width:85%;float:left;">
+                <thead>
+                    <tr>
+                        <td><b>Imie</b></td>
+                        <td><b>Nazwisko</b></td>
+                        <td><b>Stanowisko</b></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
 
-                @foreach (Pracownicy pracownicy in Model.pracownicy)
-                {
-                <tr>
-                    <td>@pracownicy.PracImie</td>
-                    <td>@pracownicy.PracNazwisko</td>
-                    <td>@pracownicy.PracStanowsko</td>
-                    <td><img src="~/remove.png" alt="Sample Photo" style="width:23px;height:23px;" /></td>
-                </tr>
-                }
+                    @foreach (Pracownicy pracownicy in Model.pracownicy)
+                    {
+                        <tr>
+                            <td>@pracownicy.PracImie</td>
+                            <td>@pracownicy.PracNazwisko</td>
+                            <td>@pracownicy.PracStanowsko</td>
+                            <td>
+                                <form asp-page-handler="Remove">
+                                    <input type="image" src="~/remove.png" name="submit" alt="submit" />
+                                    <input type="hidden" name="wybrany" value="@pracownicy.PracId" />
 
-            </tbody>
-        </table>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
     </div>
     <div class="aktywnezlecenia">
-        <b>Podgląd aktywnych zleceń :</b> <button type="submit" class="btn btn-warning">Przypisz zlecenie</button>
+        <b>Podgląd aktywnych zleceń :</b>
+        @foreach (Zespoly zespol in Model.zespoly)
+        {
+            <a href="ZleceniePrzypisz?zespol_id=@zespol.ZespId"><button type="submit" class="btn btn-warning">Przypisz zlecenie</button></a>
+        }
         <table class="table table-hover" style="width: 85%; float: left;">
             <thead>
                 <tr>
