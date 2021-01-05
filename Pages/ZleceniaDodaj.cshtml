@@ -1,18 +1,11 @@
 ﻿@page
-@model FirmaDeweloperskaWeb.Pages.ZleceniePrzypiszModel
+@model FirmaDeweloperskaWeb.Pages.ZlecenieDodajModel
 @{
-    ViewData["Tittle"] = "Przypis zlecenie do zespolu";
 }
 
-
 <div style="width:50%;margin:auto;margin-top:40px;">
-    @foreach (Zespoly zespol in Model.wybrany_zespol)
-    {
-        <div>
-            Aktualnie przypisujesz zlecenie do zespołu <h2>@zespol.ZespNazwa</h2>
-        </div>
-    }
-    <form class="needs-validation" novalidate asp-page-handler="Przypisz" method="POST">
+
+    <form class="needs-validation" novalidate asp-page-handler="Add" method="POST">
         <div>
             <label for="validationCustom01" class="form-label">Numer</label>
             <input type="text" class="form-control" id="formNumer" name="formNumer" placeholder="Auto" disabled>
@@ -24,7 +17,7 @@
             <label class="form-label">Priorytet: </label> <br />
             <select class="form-select form-select-lg" aria-label="Default select example" name="formPrio" id="formPrio">
                 <option selected>Wybierz priorytet</option>
-                @foreach (Priorytety priorytet in Model.priorytety)
+                @foreach (Priorytety priorytet in Model.prio)
                 {
                     <option value="@priorytet.PrioId">@priorytet.PrioNazwa</option>
                 }
@@ -32,10 +25,10 @@
         </div>
         <div>
             <label class="form-label">Zespół: </label> </br>
-            <select class="form-select form-select-lg" aria-label="Default select example" name="formZespol" id="formZespol" disabled>
-                @foreach (Zespoly zespol in Model.wybrany_zespol)
+            <select class="form-select form-select-lg" aria-label="Default select example" name="formZespol" id="formZespol">
+                @foreach (Zespoly zespol in Model.zesp)
                 {
-                    <option selected="selected" value="@zespol.ZespId">@zespol.ZespNazwa</option>
+                    <option  value="@zespol.ZespId">@zespol.ZespNazwa</option>
                 }
             </select>
         </div>
@@ -58,7 +51,7 @@
         </div>
         <div>
             </br>
-            <centeR><button class="btn btn-primary" type="submit">Przypisz Zlecenie</button></centeR>
+            <centeR><button class="btn btn-primary" type="submit">Dodaj nowe zlecenie</button></centeR>
         </div>
     </form>
 </div>
