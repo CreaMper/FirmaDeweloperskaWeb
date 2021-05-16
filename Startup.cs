@@ -25,12 +25,14 @@ namespace FirmaDeweloperskaWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddSession();
+            services.AddMemoryCache();
             services.AddMvc().AddRazorPagesOptions(options =>
             {
                 options.Conventions.AddPageRoute("/Pracownicy", "");
             });
-            services.AddDbContext<firma_deweloperska_3Context>(options =>
-            options.UseSqlServer("Server=DESKTOP-EJFO5TA\\SQLEXPRESS;Database=firma_deweloperska_3;Trusted_Connection=True;MultipleActiveResultSets=true"));
+            services.AddDbContext<MECHANIKContext>(options =>
+            options.UseSqlServer("Server=DESKTOP-9VMHQV4\\SQLEXPRESS;Database=MECHANIK;Trusted_Connection=True;MultipleActiveResultSets=true"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +51,7 @@ namespace FirmaDeweloperskaWeb
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();

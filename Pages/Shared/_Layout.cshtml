@@ -1,66 +1,63 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] </title>
-    <environment names="Development">
-        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
-        <link href="~/css/site.css" rel="stylesheet" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    </environment>
+    <title>@ViewData["Title"] - TurboBAMBOO</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/layout.css" />
 </head>
 <body>
-    @{
-        var routeUrl = Url.RouteUrl(ViewContext.RouteData.Values);
-        var qsPath = ViewContext.HttpContext.Request.QueryString.Value;
-        var returnUrl = $"{routeUrl}{qsPath}";
-    }
+    <div id="container">
+        <div id="left_panel">
+            <div id="lp_head">
+                <a stye='float:left;'>Zalogowany jako</a> <a style="float:right;"><b>Jarosław Psikuta</b></a>
+            </div>
+            <div id='lp_image'>
+                <img class="lp_img" src="~/img/image_placeholder.jpg" />
+            </div>
+            <div id="quick_info">
+                <table class="table_quick_info">
+                    <tr>
+                        <td>Stanowisko</td>
+                        <td class="table_td">Kierownik</td>
+                    </tr>
+                    <tr>
+                        <td>Staż</td>
+                        <td class="table_td">2 lata</td>
+                    </tr>
+                    <tr>
+                        <td>Dzisiejsza zmiana</td>
+                        <td class="table_td">7:00-14:00</td>
+                    </tr>
 
-    @if (returnUrl == "/Zespoly" || returnUrl == "/ZespolyDodaj?" || returnUrl == "/ZespolySzczegoly")
-    {
-        <ul class="nav nav-pills nav-fill">
-            <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="@Url.Page("/Pracownicy")">Lista Pracowników</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="@Url.Page("/Zespoly")">Zespoły </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Page("/Zlecenia")">Zlecenia</a>
-            </li>
-        </ul>
-    }
-    else if (returnUrl == "/Zlecenia")
-    {
-        <ul class="nav nav-pills nav-fill">
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="@Url.Page("/Pracownicy")">Lista Pracowników</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="@Url.Page("/Zespoly")">Zespoły </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="@Url.Page("/Zlecenia")">Zlecenia</a>
-            </li>
-        </ul>
+                </table>
+            </div>
+            <div id="NavBar">
+                <ul class="nav flex-column">
+                    <li class="nav-item nav1">
+                        <a class="nav-link active" aria-current="page" onclick="@("window.location.href='" + @Url.Action("UserInfo", "Home") + "'");">Profil</a>
+                    </li>
+                    <li class="nav-item nav1">
+                        <a class="nav-link" onclick="@("window.location.href='" + @Url.Action("WorkersInfo", "Home") + "'");">Podgląd Pracowników</a>
+                    </li>
+                    <li class="nav-item nav1">
+                        <a class="nav-link" onclick="@("window.location.href='" + @Url.Action("Orders", "Home") + "'");">Zamówione części</a>
+                    </li>
+                    <li class="nav-item nav1">
+                        <a class="nav-link" onclick="@("window.location.href='" + @Url.Action("PartList", "Home") + "'");">Stan magazynu</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            @RenderBody()
+        </div>
+    </div>
 
-    }
-    else
-    {
-        <ul class="nav nav-pills nav-fill">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="@Url.Page("/Pracownicy")">Lista Pracowników</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="@Url.Page("/Zespoly")">Zespoły </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="@Url.Page("/Zlecenia")">Zlecenia</a>
-            </li>
-        </ul>
-    }
-
-    @RenderBody()
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -1,0 +1,106 @@
+﻿@page
+@model FirmaDeweloperskaWeb.Pages.podgladpracownikowModel
+@{
+}
+@{
+    ViewData["Title"] = "PodgladPracownikow";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TurboBAMBOO</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/layout.css" />
+</head>
+<body>
+    <div id="container">
+        <div id="left_panel">
+            @foreach (User useer in Model.pracownik)
+            {
+                <div id="lp_head">
+                    <a stye='float:left;'>Zalogowany jako</a> <a style="float:right;"><b>@useer.UsrName @useer.UsrLastName</b></a>
+                </div>
+                <div id='lp_image'>
+                    <img class="lp_img" src="~/img/image_placeholder.jpg" />
+                </div>
+                <div id="quick_info">
+                    <table class="table_quick_info">
+                        <tr>
+                            <td>Stanowisko</td>
+                            <td class="table_td">@useer.Role</td>
+                        </tr>
+                        <tr>
+                            <td>Staż</td>
+                            <td class="table_td">2 lata</td>
+                        </tr>
+                        <tr>
+                            <td>Dzisiejsza zmiana</td>
+                            <td class="table_td">7:00-14:00</td>
+                        </tr>
+
+                    </table>
+                </div>
+            }
+            <div id="NavBar">
+                <ul class="nav flex-column">
+                    <li class="nav-item nav1">
+                        <a class="nav-link active" aria-current="page" href="@Url.Page("/UserInfo")">Profil</a>
+                    </li>
+                    <li class="nav-item nav1">
+                        <a class="nav-link" href="@Url.Page("/PodgladPracownikow")"> Podgląd Pracowników</a>
+                    </li>
+                    <li class="nav-item nav1">
+                        <a class="nav-link" href="@Url.Page("/Orders")">Zamówione części</a>
+                    </li>
+                    <li class="nav-item nav1">
+                        <a class="nav-link" href="@Url.Page("/Magazy")">Stan magazynu</a>
+                    </li>
+                    <li class="nav-item nav1">
+                        <a class="nav-link" href="@Url.Page("/Index")">Wyloguj</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            <head>
+                <link rel="stylesheet" href="~/css/workers_info.css" />
+            </head>
+            <a style="font-size:20px;font-weight:bold;margin:auto;">Spis wszystkich pracowników </a></br></br>
+            <table class="table table-hover table_width">
+                <tr>
+                    <td>Imie</td>
+                    <td>Nazwisko</td>
+                    <td><b>Stanowisko</b></td>
+                    <td>Telefon</td>
+                    <td>PESEL</td>
+                    <td>Login</td>
+                    <td></td>
+                </tr>
+                @foreach (User useers in Model.pracownicy)
+                {
+                <tr>
+                    <td>@useers.UsrName</td>
+                    <td>@useers.UsrLastName</td>
+                    <td><b>@useers.Role</b></td>
+                    <td>@useers.UsrEmail</td>
+                    <td>@useers.UsrPesel</td>
+                    <td>@useers.UsrLogin</td>
+                    <td></td>
+                    <td>
+                        <img class="edit_image" src="~/img/edit.png" />
+                        <img class="edit_image" src="~/img/lupa.png" />
+                    </td>
+                </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

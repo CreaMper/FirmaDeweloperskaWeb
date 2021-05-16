@@ -1,0 +1,23 @@
+﻿body{
+}
+
+.edit_image {
+    width: 15px;
+    height: 15px;
+}
+
+.table_width{
+    width:100%;
+    margin: auto;
+    text-align:center;
+}
+
+.table_width2 {
+    margin: auto;
+    text-align: center;
+}
+
+#ovf {
+    height: 200px;
+    margin: auto;
+}

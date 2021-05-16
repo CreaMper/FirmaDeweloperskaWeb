@@ -1,0 +1,39 @@
+﻿body{
+}
+
+.edit_image {
+    width: 15px;
+    height: 15px;
+}
+
+.table_width{
+    width:90%;
+    margin: auto;
+}
+
+.input-width {
+    width:300px; 
+    float:left;
+    display:block;
+}
+
+.select {
+    width: 50px;
+    float: left;
+    display: block;
+}
+
+#marka {
+    margin-left: 10px;
+    float: left;
+    display: block;
+}
+#sortuj {
+    margin-left: 10px;
+    float: left;
+    display: block;
+}
+
+.szukaj {
+    margin-left:20px;
+}

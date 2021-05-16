@@ -1,0 +1,44 @@
+﻿body {
+    background-color: #e3e3e3;
+}
+
+#container {
+    width:100%;
+    height: 100%;
+}
+
+#login_container {
+    margin: auto;
+    width: 600px;
+    height: 300px;
+    margin-top: 100px;
+    background-color:white;
+}
+
+#login_header {
+    float: left;
+    height: 75px;
+    width: 100%;
+    background-color: #1b7bab;
+}
+#header_img {
+    width: 75px;
+    height: 75px;
+}
+
+.header_text {
+    font-size: 20px;
+    color: white;
+}
+.login_input_width{
+    width: 300px !important;
+}
+
+#login_form{
+    margin: auto;
+    width:400px;
+}
+
+.login_button_float {
+    float:right !important;
+}

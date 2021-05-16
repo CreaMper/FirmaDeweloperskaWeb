@@ -1,0 +1,56 @@
+﻿@page
+@model FirmaDeweloperskaWeb.Pages.PracownicyModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TurboBAMBOO</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/index.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="login_container">
+            <div id="login_header">
+                <img id="header_img" src="~/img/login_weii.png" />
+                <a class="header_text"> <i><b>"Vroom Vroom"</b></i> - Autoryzowany serwis motoryzacyjny</a>
+            </div>
+            <div id="login_form">
+                <form method="post" asp-page-handler="Log">
+                    <div class="col-md-4">
+                        <label for="validationCustom01" class="form-label">Login</label>
+                        <input type="text" class="form-control login_input_width" name="login" id="validationCustom01" required>
+                        <div class="invalid-feedback">
+                            Login jest wymagany!
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationCustom01" class="form-label">Hasło</label>
+                        <input type="password" class="form-control login_input_width" name="haslo" id="validationCustom02" required>
+                        <div class="invalid-feedback">
+                            Hasło jest wymagane!
+                        </div>
+                    </div>
+                    </br>
+                    <div class="col-12">
+                        <button class="btn btn-primary login_button_float" type="submit" onclick="@("window.location.href='" + @Url.Action("UserInfo", "Home") + "'");">Zaloguj się</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

@@ -1,0 +1,127 @@
+﻿@page
+@model FirmaDeweloperskaWeb.Pages.MagazyModel
+@{
+}
+@{
+    ViewData["Title"] = "Magazy";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TurboBAMBOO</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/layout.css" />
+</head>
+<body>
+    <div id="container">
+        <div id="left_panel">
+            @foreach (User useer in Model.pracownik)
+            {
+                <div id="lp_head">
+                    <a stye='float:left;'>Zalogowany jako</a> <a style="float:right;"><b>@useer.UsrName @useer.UsrLastName</b></a>
+                </div>
+                <div id='lp_image'>
+                    <img class="lp_img" src="~/img/image_placeholder.jpg" />
+                </div>
+                <div id="quick_info">
+                    <table class="table_quick_info">
+                        <tr>
+                            <td>Stanowisko</td>
+                            <td class="table_td">@useer.RoleId</td>
+                        </tr>
+                        <tr>
+                            <td>Staż</td>
+                            <td class="table_td">2 lata</td>
+                        </tr>
+                        <tr>
+                            <td>Dzisiejsza zmiana</td>
+                            <td class="table_td">7:00-14:00</td>
+                        </tr>
+
+                    </table>
+                </div>
+            }
+            <div id="NavBar">
+                <ul class="nav flex-column">
+                    <li class="nav-item nav1">
+                        <a class="nav-link active" aria-current="page" href="@Url.Page("/UserInfo")">Profil</a>
+                    </li>
+                    <li class="nav-item nav1">
+                        <a class="nav-link" href="@Url.Page("/PodgladPracownikow")"> Podgląd Pracowników</a>
+                    </li>
+                    <li class="nav-item nav1">
+                        <a class="nav-link" href="@Url.Page("/Orders")">Zamówione części</a>
+                    </li>
+                    <li class="nav-item nav1">
+                        <a class="nav-link" href="@Url.Page("/Magazy")">Stan magazynu</a>
+                    </li>
+                    <li class="nav-item nav1">
+                        <a class="nav-link" href="@Url.Page("/Index")">Wyloguj</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            <head>
+                <link rel="stylesheet" href="~/css/part_list.css" />
+            </head>
+            <a style="font-size:20px;font-weight:bold;margin:auto;">Przeglądasz stan magazynu </a></br></br>
+
+            <form id="search">
+                <div class="input-group mb-3 input-width">
+                    <input type="text" class="input-width" placeholder="Wpisz frazę" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+                <div id="marka">
+                    Marka:
+                    <select name="cars" id="cars">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="opel">Opel</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                </div>
+                <div id="sortuj">
+                    Sortuj:
+                    <select name="cars" id="cars">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="opel">Opel</option>
+                        <option value="audi">Audi</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary szukaj">Szukaj</button>
+            </form>
+
+            <table class="table table-hover table_width">
+                <tr>
+                    <td>Nazwa</td>
+                    <td>Model</td>
+                    <td><b>Typ</b></td>
+                    <td>Ilość</td>
+                    <td>Cena</td>
+                    <td class="edit_image"><img class="edit_image" src="~/img/lupa.png" /></td>
+                </tr>
+                @foreach (Part part in Model.czesci)
+                {
+                    <tr>
+                        <td>@part.PartName</td>
+                        <td>@part.VehId</td>
+                        <td><b>@part.PartName</b></td>
+                        <td>@part.PartAmount</td>
+                        <td>@part.PartPrice</td>
+                        <td class="edit_image"><img class="edit_image" src="~/img/lupa.png" /></td>
+                    </tr>
+                }
+                </table>
+        </div>
+    </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>
